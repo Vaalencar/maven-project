@@ -55,7 +55,7 @@ node {
                         summary: 'New JIRA Created from Jenkins.',
                         description: 'New JIRA Created from Jenkins.',
                         issuetype: [name: 'Task']]]
-            def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
+            def newIssue = jiraNewIssue issue: issue, site: 'http://h2685274.stratoserver.net:8080'
             echo newIssue.data.key
         }
 }
