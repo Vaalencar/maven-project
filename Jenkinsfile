@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging'){
+        stage ('Deploy to Staging and Static Analysis'){
             steps {
                 parallel(
                     a: {
