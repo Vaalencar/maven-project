@@ -55,7 +55,7 @@ node {
                         summary: 'New JIRA Created from Jenkins.',
                         description: 'New JIRA Created from Jenkins.',
                         issuetype: [name: 'Task']]]
-            def newIssue = jiraNewIssue issue: issue
+            def newIssue = jiraNewIssue issue: issue, site: 'Project_management'
             echo newIssue.data.key
         }
 }
