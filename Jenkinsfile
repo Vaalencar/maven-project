@@ -22,18 +22,15 @@ pipeline {
                         build job: 'deploy-to-staging'
                     },
                     b: {
-                        build job: 'static-analysis'
-                    }
-                ) 
-            }
-        }
-        stage ('JIRA'){
-            def issue = [fields: [ project: [key: 'TESTPRO'],
+                        def issue = [fields: [ project: [key: 'TESTPRO'],
                        summary: 'New JIRA Created from Jenkins.',
                        description: 'New JIRA Created from Jenkins.',
                        issuetype: [name: 'Task']]]
-            def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
-            echo newIssue.data.key
+                        def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
+                        echo newIssue.data.key
+                    }
+                ) 
+            }
         }
         stage ('Deploy to Production'){
             steps{
