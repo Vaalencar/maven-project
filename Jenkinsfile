@@ -51,7 +51,7 @@ pipeline {
 }
 node {
     stage ('JIRA'){
-            def issue = [fields: [ project: [key: 'TESTPRO'],
+            def issue = [fields: [ project: [key: 'PROJ'],
                         summary: 'New JIRA Created from Jenkins.',
                         description: 'New JIRA Created from Jenkins.',
                         issuetype: [name: 'Task']]]
