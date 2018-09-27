@@ -29,15 +29,12 @@ pipeline {
         }
         stage('JIRA') {
             def issue = [fields: [ project: [key: 'PROJ'],
-                                        summary: 'New JIRA Created from Jenkins.',
-                                        description: 'New JIRA Created from Jenkins.',
-                                        issuetype: [name: 'task']]]
-
-            def newIssue = jiraNewIssue issue: issue
-
-            echo newIssue.successful.toString()
-            echo newIssue.data.toString()
-            }
+                       summary: 'New JIRA Created from Jenkins.',
+                       description: 'New JIRA Created from Jenkins.',
+                       issuetype: [name: 'Task']]]
+            def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
+            echo newIssue.data.key
+        }
         stage ('Deploy to Production'){
             steps{
                 timeout(time:5, unit:'DAYS'){
