@@ -17,10 +17,16 @@ pipeline {
         }
         stage ('Deploy to Staging'){
             steps {
-                build job: 'deploy-to-staging'
+                parallel(
+                    a: {
+                        build job: 'deploy-to-staging'
+                    },
+                    b: {
+                        build job: 'static-analysis'
+                    }
+                ) 
             }
         }
-
         stage ('Deploy to Production'){
             steps{
                 timeout(time:5, unit:'DAYS'){
