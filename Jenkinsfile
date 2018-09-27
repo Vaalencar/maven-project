@@ -27,16 +27,6 @@ pipeline {
                 ) 
             }
         }
-        stage ('JIRA'){
-            steps {
-                def issue = [fields: [ project: [key: 'TESTPRO'],
-                        summary: 'New JIRA Created from Jenkins.',
-                        description: 'New JIRA Created from Jenkins.',
-                        issuetype: [name: 'Task']]]
-                def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
-                echo newIssue.data.key
-            }
-        }
         stage ('Deploy to Production'){
             steps{
                 timeout(time:5, unit:'DAYS'){
@@ -58,4 +48,14 @@ pipeline {
 
 
     }
+}
+node {
+    stage ('JIRA'){
+            def issue = [fields: [ project: [key: 'TESTPRO'],
+                        summary: 'New JIRA Created from Jenkins.',
+                        description: 'New JIRA Created from Jenkins.',
+                        issuetype: [name: 'Task']]]
+            def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
+            echo newIssue.data.key
+        }
 }
