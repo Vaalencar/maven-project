@@ -20,7 +20,6 @@ pipeline {
                 parallel(
                     a: {
                         build job: 'deploy-to-staging'
-                        sh 'curl -s http://192.168.72.124:8084/job/packaging/build?token=TOKEN'
                     },
                     b: {
                         build job: 'static-analysis'
